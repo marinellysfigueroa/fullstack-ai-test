@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: expedited-orders-api
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+app:
+  cors:
+    # Origins of the React UI. Override with APP_CORS_ALLOWED_ORIGINS=https://ops.example.com,...
+    allowed-origins:
+      - http://localhost:5173
+      - http://127.0.0.1:5173
+      - http://localhost:4173
+
+orders:
+  seed-sample-data: true
+
+eligibility:
+  minimum-score: 60
+  risky-score-below: 80
+  inventory-max-age: 10m
+  order-age-penalty-after: 48h
+  max-quantity-without-penalty: 3
+  amount-tolerance: 0.01
+  # Assumed values for "same thresholds as before"; adjust to the real ones.
+  tier-amount-thresholds:
+    STANDARD: 500
+    GOLD: 1500
+    PLATINUM: 5000
+  supported-countries: [US, CA, MX, GB, ES, FR, DE]
+  blocking-risk-flags: [FRAUD_SUSPECTED, CHARGEBACK_HISTORY]
