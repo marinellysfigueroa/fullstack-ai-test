@@ -19,6 +19,15 @@ app:
 orders:
   seed-sample-data: true
 
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    try-it-out-enabled: true
+  paths-to-match: /api/**
+
 eligibility:
   minimum-score: 60
   risky-score-below: 80

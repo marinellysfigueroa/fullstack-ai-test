@@ -14,7 +14,7 @@ ones for expedited processing.
 # 1) Backend on http://localhost:8080 (seeds 13 sample orders on startup)
 cd backend
 ./mvnw spring-boot:run          # or: mvn spring-boot:run
-./mvnw test                     # 44 tests: rules, engine, approval/concurrency, HTTP + CORS
+./mvnw test                     # 45 tests: rules, engine, approval/concurrency, HTTP + CORS
 
 # 2) Frontend on http://localhost:5173
 cd frontend
@@ -23,6 +23,9 @@ npm run dev
 npm test                        # component tests
 npm run build                   # type-check + production build
 ```
+
+**API docs (Swagger):** with the backend running, open http://localhost:8080/swagger-ui.html to browse and
+try every endpoint. The OpenAPI spec is at http://localhost:8080/v3/api-docs.
 
 The seed data uses timestamps relative to startup. After 10 minutes every inventory check is stale,
 so every order becomes "not eligible", which is the correct result. Use **Re-check inventory
@@ -156,6 +159,9 @@ Each step lists the requirement and where it is implemented, so it can be checke
 - [x] Tests: the frontend origin passes preflight, and an unknown origin gets `403` with no CORS headers (`OrderControllerTest`). This was also checked in a browser, with the UI on `:4173` approving an order directly against `:8080`.
 
 ## API summary
+
+Interactive documentation: http://localhost:8080/swagger-ui.html (springdoc-openapi). It documents every
+response, including the structured `404`, `409` and `422` errors of the approval endpoint.
 
 | Method | Path | Purpose |
 |---|---|---|
